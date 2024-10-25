@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 import Image from "next/image";
-import Logo from "@/app/Logo.png";
+import Logo from "@/app/Logo.svg";
 
 export default function Header() {
   return (
