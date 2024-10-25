@@ -5,41 +5,59 @@ import { motion } from "framer-motion";
 
 const reviews = [
   {
-    name: "Jack",
-    username: "@jack",
-    body: "I've never seen anything like this before. It's amazing. I love it.",
-    img: "https://avatar.vercel.sh/jack",
+    name: "Jacques",
+    username: "@jacques",
+    body: "Je n'ai jamais vu quelque chose comme ça auparavant. C'est incroyable, j'adore CoachFit.",
+    img: "https://avatar.vercel.sh/jacques",
   },
   {
-    name: "Jill",
-    username: "@jill",
-    body: "I don't know what to say. I'm speechless. This is amazing.",
-    img: "https://avatar.vercel.sh/jill",
+    name: "Juliette",
+    username: "@juliette",
+    body: "Honnêtement, je suis sans mots. Cette application dépasse mes attentes !",
+    img: "https://avatar.vercel.sh/juliette",
+  },
+
+  {
+    name: "Sophie",
+    username: "@sophie",
+    body: "CoachFit a totalement changé ma routine d'entraînement ! Je recommande à 100%.",
+    img: "https://avatar.vercel.sh/sophie",
   },
   {
-    name: "John",
-    username: "@john",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://avatar.vercel.sh/john",
-    cl,
+    name: "Claire",
+    username: "@claire",
+    body: "Depuis que j'utilise CoachFit, je me sens plus en forme et suivi par des professionnels !",
+    img: "https://avatar.vercel.sh/claire",
   },
   {
-    name: "Jane",
-    username: "@jane",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://avatar.vercel.sh/jane",
+    name: "Antoine",
+    username: "@antoine",
+    body: "Les programmes sont variés et adaptés. CoachFit est exactement ce dont j'avais besoin.",
+    img: "https://avatar.vercel.sh/antoine",
   },
   {
-    name: "Jenny",
-    username: "@jenny",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://avatar.vercel.sh/jenny",
+    name: "Camille",
+    username: "@camille",
+    body: "Je progresse de semaine en semaine avec les conseils des coachs, merci CoachFit !",
+    img: "https://avatar.vercel.sh/camille",
   },
   {
-    name: "James",
-    username: "@james",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://avatar.vercel.sh/james",
+    name: "Maxime",
+    username: "@maxime",
+    body: "Je recommande CoachFit à tous mes amis. Super pratique pour garder la forme en ligne !",
+    img: "https://avatar.vercel.sh/maxime",
+  },
+  {
+    name: "Léa",
+    username: "@lea",
+    body: "L'application est facile à utiliser et les coachs sont super motivants. CoachFit est top !",
+    img: "https://avatar.vercel.sh/lea",
+  },
+  {
+    name: "Lucas",
+    username: "@lucas",
+    body: "Chaque séance me motive davantage. CoachFit a transformé mon entraînement !",
+    img: "https://avatar.vercel.sh/lucas",
   },
 ];
 
@@ -59,7 +77,7 @@ const ReviewCard = ({
   return (
     <figure
       className={cn(
-        "relative w-72 cursor-pointer overflow-hidden rounded-xl border p-6",
+        "relative w-72 cursor-pointer overflow-hidden rounded-xl border p-5",
         // light styles
         "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
         // dark styles
@@ -77,7 +95,7 @@ const ReviewCard = ({
           </p>
         </div>
       </div>
-      <blockquote className="mt-2 text-base">{body}</blockquote>
+      <blockquote className="mt-4 text-sm">{body}</blockquote>
     </figure>
   );
 };
@@ -98,12 +116,12 @@ export const HomeNotice = () => {
         <strong>de vraies personnes</strong> disent à propos de CoachFit
       </p>
       <div className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden ">
-        <Marquee pauseOnHover className="[--duration:20s]">
+        <Marquee pauseOnHover className="[--duration:30s]">
           {firstRow.map((review) => (
             <ReviewCard key={review.username} {...review} />
           ))}
         </Marquee>
-        <Marquee reverse pauseOnHover className="[--duration:20s]">
+        <Marquee reverse pauseOnHover className="[--duration:30s]">
           {secondRow.map((review) => (
             <ReviewCard key={review.username} {...review} />
           ))}
