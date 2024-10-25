@@ -1,7 +1,8 @@
 "use client";
 import Marquee from "@/components/ui/marquee";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 const reviews = [
   {
@@ -101,20 +102,30 @@ const ReviewCard = ({
 };
 
 export const HomeNotice = () => {
+  const h2Ref = useRef(null);
+  const pRef = useRef(null);
+  const isInView = useInView(h2Ref);
   return (
     <div className="max-x-[1300px] mx-auto flex flex-col items-center justify-center gap-4 mt-12">
       <motion.h2
-        initial={{ y: 50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1, ease: "easeInOut" }}
+        ref={h2Ref}
+        initial={{ y: 40, opacity: 0 }}
+        animate={isInView ? { y: 0, opacity: 1 } : {}}
+        transition={{ duration: 1, ease: "easeOut" }}
         className="text-3xl font-bold tracking-wide"
       >
         Ce que les gens disent
       </motion.h2>
-      <p className="text-muted-foreground text-lg">
+      <motion.p
+        ref={pRef}
+        initial={{ y: 40, opacity: 0 }}
+        animate={isInView ? { y: 0, opacity: 1 } : {}}
+        transition={{ duration: 1.1, ease: "easeOut" }}
+        className="text-muted-foreground text-lg max-w-lg mx-auto text-center"
+      >
         Ne vous contentez pas de nous croire sur parole. Voici ce que{" "}
         <strong>de vraies personnes</strong> disent à propos de CoachFit
-      </p>
+      </motion.p>
       <div className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden ">
         <Marquee pauseOnHover className="[--duration:30s]">
           {firstRow.map((review) => (
