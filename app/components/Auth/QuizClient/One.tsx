@@ -23,25 +23,29 @@ import { toast } from "react-toastify";
 import { updateUserOne } from "@/lib/actionsQuizClient";
 
 export const One = ({ user, backQuizId, nextQuizId }: QuizProps) => {
-  const onSubmit = async (event: any) => {
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log(user);
     try {
-      await updateUserOne(new FormData(event.target), user.id);
-      toast.success("formulaire validé vec succès !");
+      const formData = new FormData(event.currentTarget); // Utiliser currentTarget pour obtenir le formulaire
+      await updateUserOne(formData, user.id);
+      toast.success("Formulaire validé avec succès !");
+      nextQuizId(); // Appeler nextQuizId ici après succès
     } catch (error) {
-      toast.error("erreur lors de la validation du formulaire !");
+      console.error(error); // Log de l'erreur pour débogage
+      toast.error("Erreur lors de la validation du formulaire !");
     }
   };
+
   return (
     <form onSubmit={onSubmit}>
       <Card>
         <CardHeader>
           <CardTitle className="text-center text-2xl tracking-wide">
-            Vos informations essentiels
+            Vos informations essentielles
           </CardTitle>
           <CardDescription className="text-center ">
-            Remplissez votre poids , age etc
+            Remplissez votre poids, âge, etc.
           </CardDescription>
         </CardHeader>
         <CardContent className="grid grid-cols-2 gap-5 my-4 items-end ">
@@ -59,7 +63,7 @@ export const One = ({ user, backQuizId, nextQuizId }: QuizProps) => {
           </div>
           <div>
             <Label htmlFor="age" className="text-muted-foreground">
-              Age
+              Âge
             </Label>
             <Input name="age" id="age" type="number" min={12} required />
           </div>
@@ -67,11 +71,18 @@ export const One = ({ user, backQuizId, nextQuizId }: QuizProps) => {
             <Label htmlFor="weight" className="text-muted-foreground">
               Poids en kg
             </Label>
-            <Input name="weight" id="weight" type="number" min={20} required />
+            <Input
+              name="weight"
+              step="0.1"
+              id="weight"
+              type="number"
+              min={20}
+              required
+            />
           </div>
           <Select required name="sex">
             <SelectTrigger>
-              <SelectValue placeholder="Selectionnez votre sexe" />
+              <SelectValue placeholder="Sélectionnez votre sexe" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
@@ -82,13 +93,11 @@ export const One = ({ user, backQuizId, nextQuizId }: QuizProps) => {
             </SelectContent>
           </Select>
         </CardContent>
-        <CardFooter className="justify-end gap-4  ">
+        <CardFooter className="justify-end gap-4">
           <Button type="button" onClick={backQuizId} variant={"secondary"}>
             Revenir en arrière
           </Button>
-          <Button type="submit" onClick={nextQuizId}>
-            Continuer
-          </Button>
+          <Button type="submit">Continuer</Button>
         </CardFooter>
       </Card>
     </form>
