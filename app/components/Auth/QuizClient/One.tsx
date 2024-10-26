@@ -68,6 +68,18 @@ export const One = ({ user, backQuizId, nextQuizId }: QuizProps) => {
             <Input name="age" id="age" type="number" min={12} required />
           </div>
           <div>
+            <Label htmlFor="height" className="text-muted-foreground">
+              Taille en cm
+            </Label>
+            <Input name="height" id="height" type="number" min={12} required />
+          </div>
+          <div>
+            <Label htmlFor="tel" className="text-muted-foreground">
+              tel
+            </Label>
+            <Input name="tel" id="tel" type="tel" min={50} required />
+          </div>
+          <div>
             <Label htmlFor="weight" className="text-muted-foreground">
               Poids en kg
             </Label>
