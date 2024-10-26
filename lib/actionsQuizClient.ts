@@ -28,3 +28,29 @@ export const updateUserOne = async (formdata: FormData, id: string) => {
     },
   });
 };
+export const updateUserTwo = async (valueSelected: string, id: string) => {
+  console.log(valueSelected);
+
+  await prisma.user.update({
+    where: { id },
+    data: {
+      activity_level: valueSelected,
+    },
+  });
+};
+export const updateUserThree = async (valueSelected: string, id: string) => {
+  console.log(valueSelected);
+
+  await prisma.user.update({
+    where: { id },
+    data: {
+      health_conditions: valueSelected,
+    },
+  });
+};
+export const updateUserFour = async (valueSelected: string[], id: string) => {
+  console.log(valueSelected);
+
+  const goals = valueSelected.map((title) => ({ title, userId: id }));
+  await prisma.goal.createMany({ data: goals });
+};

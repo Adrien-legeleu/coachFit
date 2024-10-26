@@ -4,6 +4,9 @@ import { getUser } from "@/lib/actionsUser";
 import { useEffect, useState } from "react";
 import { One } from "./One";
 import { Two } from "./Two";
+import { Three } from "./Three";
+import { Four } from "./Four";
+import { Five } from "./Five";
 
 export interface QuizProps {
   user: any;
@@ -20,6 +23,9 @@ const componentQuiz = (
 ): QuizComponents => ({
   1: <One user={user} backQuizId={backQuizId} nextQuizId={nextQuizId} />,
   2: <Two user={user} backQuizId={backQuizId} nextQuizId={nextQuizId} />,
+  3: <Three user={user} backQuizId={backQuizId} nextQuizId={nextQuizId} />,
+  4: <Four user={user} backQuizId={backQuizId} nextQuizId={nextQuizId} />,
+  5: <Five user={user} backQuizId={backQuizId} nextQuizId={nextQuizId} />,
 });
 
 export const QuizClient = () => {
@@ -46,7 +52,7 @@ export const QuizClient = () => {
     fetchUser();
   }, []);
   return (
-    <div className="flex items-center justify-center pt-20   h-screen ">
+    <div className="flex items-center justify-center pt-16   h-screen ">
       {quizId == 0 ? (
         <div className="flex items-center gap-8 flex-col">
           <h1 className="text-center text-5xl">Bienvuenue dans CoachFit</h1>

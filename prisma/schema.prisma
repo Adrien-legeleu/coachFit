@@ -24,13 +24,20 @@ model User {
   height            Float?
   weight            Float?
   activity_level    String?
-  goals             String?
+  goals             Goal[] // Changez ceci pour un tableau de chaînes
   coach_id          String?
   status            String?
   bio               String?
   health_conditions String?
   speciality        String?
   tel               String?
+}
+
+model Goal {
+  id     String @id @default(cuid())
+  title  String
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
 }
 
 model Account {

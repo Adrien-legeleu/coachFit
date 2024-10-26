@@ -10,33 +10,33 @@ import {
 
 import { QuizProps } from "./QuizClient";
 import { toast } from "react-toastify";
-import { updateUserThree } from "@/lib/actionsQuizClient";
+import { updateUserTwo } from "@/lib/actionsQuizClient";
 import { useState } from "react";
 
-const activityLevels = [
+const healthConditions = [
   {
-    title: "Initiation",
+    title: "Fragile",
     description:
-      "Jusqu'à 2h d'activité hebdomadaire : pour une mise en forme légère et progressive.",
+      "État de santé nécessitant des soins réguliers ou des précautions particulières.",
   },
   {
-    title: "Équilibre",
+    title: "Moyen",
     description:
-      "Entre 2h et 5h d'activité par semaine : pour maintenir un mode de vie actif.",
+      "Santé globalement stable, avec quelques précautions ou limitations.",
   },
   {
-    title: "Performance",
+    title: "Bon",
     description:
-      "Entre 5h et 8h d'activité par semaine : idéal pour progresser et se renforcer.",
+      "Bonne condition de santé, permettant une activité régulière sans contraintes majeures.",
   },
   {
-    title: "Excellence",
+    title: "Optimal",
     description:
-      "Plus de 8h d'activité par semaine : pour les passionnés et adeptes de défis intenses.",
+      "Santé excellente, sans limitations : idéal pour un mode de vie actif.",
   },
 ];
 
-export const Two = ({ user, backQuizId, nextQuizId }: QuizProps) => {
+export const Three = ({ user, backQuizId, nextQuizId }: QuizProps) => {
   const [valueSelected, setValueSelected] = useState("");
   const [isSelected, setIsSelected] = useState(Number);
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -44,14 +44,14 @@ export const Two = ({ user, backQuizId, nextQuizId }: QuizProps) => {
     console.log(user);
     if (valueSelected !== "") {
       try {
-        await updateUserThree(valueSelected, user.id);
+        await updateUserTwo(valueSelected, user.id);
         toast.success("Formulaire validé avec succès !");
         nextQuizId();
       } catch (error) {
         toast.error("Erreur lors de la validation du formulaire !");
       }
     } else {
-      toast.info("Veuillez choisir un level");
+      toast.info("Veuillez choisir un level d'activités");
     }
   };
   const selectLevel = (idx: number, value: string) => {
@@ -64,11 +64,11 @@ export const Two = ({ user, backQuizId, nextQuizId }: QuizProps) => {
       <Card>
         <CardHeader>
           <CardTitle className="text-center text-2xl tracking-wide">
-            Quel est votre rythme d'activité physique ?
+            Sélectionnez votre état de santé actuel
           </CardTitle>
         </CardHeader>
         <CardContent className="grid grid-cols-2 gap-5  items-end ">
-          {activityLevels.map((level: any, idx: number) => {
+          {healthConditions.map((health: any, idx: number) => {
             return (
               <div
                 key={`level : ` + idx}
@@ -77,11 +77,11 @@ export const Two = ({ user, backQuizId, nextQuizId }: QuizProps) => {
                     ? "bg-neutral-100 dark:bg-neutral-950"
                     : "dark:bg-neutral-800 bg-neutral-50"
                 }`}
-                onClick={() => selectLevel(idx, level.title)}
+                onClick={() => selectLevel(idx, health.title)}
               >
-                <h3 className="">{level.title}</h3>
+                <h3 className="">{health.title}</h3>
                 <p className="text-xs max-w-[18rem] text-muted-foreground text-center">
-                  {level.description}
+                  {health.description}
                 </p>
               </div>
             );
