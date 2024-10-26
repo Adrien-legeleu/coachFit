@@ -8,8 +8,10 @@ export const getUser = async () => {
   const user = await prisma.user.findUnique({
     where: { id },
   });
+
   if (!user) {
     throw new Error(`User not found at id:` + id);
   }
+
   return user;
 };

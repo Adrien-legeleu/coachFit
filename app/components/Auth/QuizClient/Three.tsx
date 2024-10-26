@@ -10,7 +10,7 @@ import {
 
 import { QuizProps } from "./QuizClient";
 import { toast } from "react-toastify";
-import { updateUserTwo } from "@/lib/actionsQuizClient";
+import { updateUserThree } from "@/lib/actionsQuizClient";
 import { useState } from "react";
 
 const healthConditions = [
@@ -44,7 +44,7 @@ export const Three = ({ user, backQuizId, nextQuizId }: QuizProps) => {
     console.log(user);
     if (valueSelected !== "") {
       try {
-        await updateUserTwo(valueSelected, user.id);
+        await updateUserThree(valueSelected, user.id);
         toast.success("Formulaire validé avec succès !");
         nextQuizId();
       } catch (error) {

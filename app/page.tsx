@@ -10,7 +10,7 @@ export default async function Home() {
 
   if (session) {
     const user = await getUser();
-    if (user.speciality) {
+    if (user.isQuiz) {
       redirect("/dashboard");
     } else {
       redirect("/information/user");

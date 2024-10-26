@@ -5,5 +5,5 @@ import React from "react";
 export default async function DashboardPage() {
   const user = await getUser();
 
-  return <div>{user.name}</div>;
+  return <div>{user.health_conditions} uiduidudis</div>;
 }

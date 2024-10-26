@@ -7,6 +7,7 @@ import { Two } from "./Two";
 import { Three } from "./Three";
 import { Four } from "./Four";
 import { Five } from "./Five";
+import { Six } from "./Six";
 
 export interface QuizProps {
   user: any;
@@ -26,6 +27,7 @@ const componentQuiz = (
   3: <Three user={user} backQuizId={backQuizId} nextQuizId={nextQuizId} />,
   4: <Four user={user} backQuizId={backQuizId} nextQuizId={nextQuizId} />,
   5: <Five user={user} backQuizId={backQuizId} nextQuizId={nextQuizId} />,
+  6: <Six user={user} backQuizId={backQuizId} nextQuizId={nextQuizId} />,
 });
 
 export const QuizClient = () => {

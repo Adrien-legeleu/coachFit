@@ -57,7 +57,7 @@ export const One = ({ user, backQuizId, nextQuizId }: QuizProps) => {
               name="name"
               type="text"
               id="name"
-              defaultValue={user.name ?? ""}
+              defaultValue={user?.name ?? ""}
               required
             />
           </div>

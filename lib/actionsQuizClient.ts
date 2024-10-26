@@ -30,6 +30,12 @@ export const updateUserOne = async (formdata: FormData, id: string) => {
 };
 export const updateUserTwo = async (valueSelected: string, id: string) => {
   console.log(valueSelected);
+  const user = await prisma.user.findUnique({
+    where: { id },
+  });
+  console.log("ezezjjeizujei");
+
+  console.log(user);
 
   await prisma.user.update({
     where: { id },
@@ -53,4 +59,32 @@ export const updateUserFour = async (valueSelected: string[], id: string) => {
 
   const goals = valueSelected.map((title) => ({ title, userId: id }));
   await prisma.goal.createMany({ data: goals });
+};
+export const updateUserFive = async (valueSelected: string[], id: string) => {
+  console.log(valueSelected);
+  const user = await prisma.user.findUnique({
+    where: { id },
+  });
+  console.log("ezezjjeizujei");
+
+  console.log(user);
+
+  const speciality = valueSelected.map((title) => ({ title, userId: id }));
+  await prisma.speciality.createMany({ data: speciality });
+};
+export const updateUserSix = async (formdata: FormData, id: string) => {
+  let bio = formdata.get("bio") as string;
+  if (!bio) {
+    bio = "";
+  }
+
+  console.log(bio);
+
+  await prisma.user.update({
+    where: { id },
+    data: {
+      bio,
+      isQuiz: true,
+    },
+  });
 };
