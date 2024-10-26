@@ -15,11 +15,22 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  // Optional for WebAuthn support
   Authenticator Authenticator[]
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  age               Int?
+  gender            String?
+  height            Float?
+  weight            Float?
+  activity_level    String?
+  goals             String?
+  coach_id          String?
+  status            String?
+  bio               String?
+  health_conditions String?
+  speciality        String?
+  tel               String?
 }
 
 model Account {

@@ -1,0 +1,13 @@
+-- AlterTable
+ALTER TABLE "User" ADD COLUMN "activity_level" TEXT;
+ALTER TABLE "User" ADD COLUMN "age" INTEGER;
+ALTER TABLE "User" ADD COLUMN "bio" TEXT;
+ALTER TABLE "User" ADD COLUMN "coach_id" TEXT;
+ALTER TABLE "User" ADD COLUMN "gender" TEXT;
+ALTER TABLE "User" ADD COLUMN "goals" TEXT;
+ALTER TABLE "User" ADD COLUMN "health_conditions" TEXT;
+ALTER TABLE "User" ADD COLUMN "height" REAL;
+ALTER TABLE "User" ADD COLUMN "speciality" TEXT;
+ALTER TABLE "User" ADD COLUMN "status" TEXT;
+ALTER TABLE "User" ADD COLUMN "tel" TEXT;
+ALTER TABLE "User" ADD COLUMN "weight" REAL;
