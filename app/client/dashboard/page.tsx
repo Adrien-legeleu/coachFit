@@ -1,20 +1,37 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { getCoach } from "@/lib/actionsCoach";
+
 import { getUser } from "@/lib/actionsUser";
 import Link from "next/link";
 
-import React from "react";
+import { useEffect, useState } from "react";
 
-export default async function DashboardPage() {
-  const user = await getUser();
-  const coach = await getCoach(user.id);
+export default function DashboardPage() {
+  const [user, setUser] = useState<any>(null);
+  const [coach, setCoach] = useState<any>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const userData = await getUser();
+        const coachData = await getCoach(userData.id);
+        setUser(userData);
+        setCoach(coachData);
+        console.log(coachData);
+      } catch (error) {
+        console.error("error fetching data");
+      }
+    };
+    fetchData();
+  }, []); // Le tableau vide garantit que cela s'exécute une seule fois
 
   return (
     <div className="h-screen flex items-center justify-center">
-      {user.health_conditions} uiduidudis
+      {user && user.health_conditions}
       {coach ? (
         <Link href="/coach/dashboard">
-          <Button>Voir votre compte Coach</Button>
+          <Button>Voir votre compte Coach </Button>
         </Link>
       ) : (
         <Link href="/coach/information">

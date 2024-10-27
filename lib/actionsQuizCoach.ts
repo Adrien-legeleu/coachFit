@@ -1,5 +1,6 @@
 "use server";
 
+import { getCoachId } from "./actionsCoach";
 import { prisma } from "./prisma";
 
 export const createCoach = async (formdata: FormData, id: string) => {
@@ -58,13 +59,24 @@ export const updateCoachTwo = async (valueSelected: string, id: string) => {
 };
 export const updateCoachThree = async (valueSelected: string[], id: string) => {
   console.log(valueSelected);
+  const coachId = await getCoachId(id);
+  await prisma.diplome.deleteMany({
+    where: { coachId },
+  });
 
-  const diplomes = valueSelected.map((title) => ({ title, coachId: id }));
+  const diplomes = valueSelected.map((title) => ({
+    title,
+    coachId: coachId,
+  }));
   await prisma.diplome.createMany({ data: diplomes });
 };
 
 export const updateCoachFour = async (valueSelected: string[], id: string) => {
   console.log(valueSelected);
+  const coachId = await getCoachId(id);
+  await prisma.typeClients.deleteMany({
+    where: { coachId },
+  });
   const coach = await prisma.coach.findUnique({
     where: { id },
   });
@@ -72,12 +84,17 @@ export const updateCoachFour = async (valueSelected: string[], id: string) => {
 
   console.log(coach);
 
-  const type_clients = valueSelected.map((title) => ({ title, coachId: id }));
+  const type_clients = valueSelected.map((title) => ({ title, coachId }));
   await prisma.typeClients.createMany({ data: type_clients });
 };
 
 export const updateCoachFive = async (valueSelected: string[], id: string) => {
   console.log(valueSelected);
+  const coachId = await getCoachId(id);
+
+  await prisma.specialityCoach.deleteMany({
+    where: { coachId },
+  });
   const coach = await prisma.coach.findUnique({
     where: { id },
   });
@@ -85,7 +102,7 @@ export const updateCoachFive = async (valueSelected: string[], id: string) => {
 
   console.log(coach);
 
-  const speciality = valueSelected.map((title) => ({ title, coachId: id }));
+  const speciality = valueSelected.map((title) => ({ title, coachId }));
   await prisma.specialityCoach.createMany({ data: speciality });
 };
 

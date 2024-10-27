@@ -83,7 +83,7 @@ export const One = ({ user, backQuizId, nextQuizId }: QuizProps) => {
               type="number"
               min={12}
               required
-              defaultValue={user.age}
+              defaultValue={user?.age ?? ""}
             />
           </div>
           <div>
