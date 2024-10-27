@@ -24,7 +24,7 @@ export default function DashboardPage() {
       }
     };
     fetchData();
-  }, []); // Le tableau vide garantit que cela s'exécute une seule fois
+  }, []);
 
   return (
     <div className="h-screen flex items-center justify-center">
