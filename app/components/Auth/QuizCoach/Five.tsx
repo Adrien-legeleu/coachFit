@@ -1,5 +1,4 @@
 "use client";
-
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -8,36 +7,32 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { QuizProps } from "./QuizClient";
+
+import { QuizProps } from "./QuizCoach";
 import { toast } from "react-toastify";
 import { useState } from "react";
-import { updateCoachFour } from "@/lib/actionsQuizCoach";
+import { updateCoachFive } from "@/lib/actionsQuizCoach";
 
-// Options de type de clients que le coach souhaite
-const clientTypes = [
+// Tableau des spécialités
+const specialties = [
   {
-    title: "Débutants",
-    description: "Clients qui commencent leur parcours de fitness.",
+    title: "Nutrition",
   },
   {
-    title: "Intermédiaires",
-    description: "Clients avec une certaine expérience en activité physique.",
+    title: "Fitness",
   },
   {
-    title: "Avancés",
-    description: "Clients qui cherchent à améliorer leurs performances.",
-  },
-  {
-    title: "Seniors",
-    description: "Clients expérimentés qui visent des défis intenses.",
+    title: "Bien-être",
   },
   {
     title: "Réhabilitation",
-    description: "Clients ayant besoin d'un accompagnement spécifique.",
+  },
+  {
+    title: "Coaching mental",
   },
 ];
 
-export const Four = ({ user, backQuizId, nextQuizId }: QuizProps) => {
+export const Five = ({ user, backQuizId, nextQuizId }: QuizProps) => {
   const [valueSelected, setValueSelected] = useState<string[]>([]);
   const [isSelected, setIsSelected] = useState<number[]>([]);
 
@@ -47,14 +42,14 @@ export const Four = ({ user, backQuizId, nextQuizId }: QuizProps) => {
 
     if (valueSelected.length > 0) {
       try {
-        await updateCoachFour(valueSelected, user.id);
+        await updateCoachFive(valueSelected, user.id); // Utilisez la fonction correcte pour la mise à jour
         toast.success("Formulaire validé avec succès !");
         nextQuizId();
       } catch (error) {
         toast.error("Erreur lors de la validation du formulaire !");
       }
     } else {
-      toast.info("Veuillez choisir un type de client");
+      toast.info("Veuillez choisir au moins une spécialité");
     }
   };
 
@@ -73,25 +68,22 @@ export const Four = ({ user, backQuizId, nextQuizId }: QuizProps) => {
       <Card className="w-1/3 mx-auto">
         <CardHeader>
           <CardTitle className="text-center text-2xl tracking-wide">
-            Quel type de clients souhaitez-vous avoir ?
+            Quelles sont vos spécialités ?
           </CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col gap-3">
-          {clientTypes.map((client, idx) => {
+          {specialties.map((specialty, idx) => {
             return (
               <div
-                key={`level-${idx}`} // Utilisation d'un format de clé unique
+                key={`specialty-${idx}`}
                 className={`shadow-2xl shadow-neutral-200/50 dark:shadow-neutral-800 p-3 dark:bg-neutral-900 dark:border-neutral-700/70 border-neutral-200/70 border-[1px] rounded-2xl flex items-center cursor-pointer ease-in-out duration-200 ${
                   isSelected.includes(idx)
                     ? "bg-neutral-100 dark:bg-neutral-950"
                     : "dark:bg-neutral-800 bg-neutral-50"
                 }`}
-                onClick={() => selectLevel(idx, client.title)}
+                onClick={() => selectLevel(idx, specialty.title)}
               >
-                <h3>{client.title}</h3>
-                <p className="text-xs text-muted-foreground">
-                  {client.description}
-                </p>
+                <h3>{specialty.title}</h3>
               </div>
             );
           })}

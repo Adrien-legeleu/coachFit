@@ -11,9 +11,9 @@ export default async function Home() {
   if (session) {
     const user = await getUser();
     if (user.isQuiz) {
-      redirect("/dashboard");
+      redirect("/client/dashboard");
     } else {
-      redirect("/information/user");
+      redirect("/client/information/");
     }
   }
 

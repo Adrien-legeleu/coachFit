@@ -9,11 +9,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-import { QuizProps } from "./QuizClient";
+import { QuizProps } from "./QuizCoach";
 import { toast } from "react-toastify";
+import { updateUserSix } from "@/lib/actionsQuizClient";
 import { Textarea } from "@/components/ui/textarea";
 import { useRouter } from "next/navigation";
-import { updateCoachSix } from "@/lib/actionsQuizCoach";
 
 export const Six = ({ user, backQuizId, nextQuizId }: QuizProps) => {
   const router = useRouter();
@@ -22,10 +22,10 @@ export const Six = ({ user, backQuizId, nextQuizId }: QuizProps) => {
     console.log(user);
     try {
       const formData = new FormData(event.currentTarget); // Utiliser currentTarget pour obtenir le formulaire
-      await updateCoachSix(formData, user.id);
+      await updateUserSix(formData, user.id);
 
       toast.success("Succès , redirection vers votre tableau de bord !");
-      router.push("/coach/dashboard");
+      router.push("/client/dashboard");
     } catch (error) {
       console.error(error); // Log de l'erreur pour débogage
       toast.error("Erreur lors de la validation du formulaire !");

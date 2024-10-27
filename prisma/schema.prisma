@@ -8,29 +8,32 @@ generator client {
 }
 
 model User {
-  id                String          @id @default(cuid())
-  name              String?
-  email             String?         @unique
-  emailVerified     DateTime?
-  image             String?
-  accounts          Account[]
-  sessions          Session[]
-  Authenticator     Authenticator[]
-  createdAt         DateTime        @default(now())
-  updatedAt         DateTime        @updatedAt
-  isQuiz            Boolean         @default(false)
-  age               Int?
-  gender            String?
-  height            Float?
-  weight            Float?
-  activity_level    String?
-  goals             Goal[] // Changez ceci pour un tableau de chaînes
-  coach_id          String?
+  id             String          @id @default(cuid())
+  name           String?
+  email          String?         @unique
+  emailVerified  DateTime?
+  image          String?
+  accounts       Account[]
+  sessions       Session[]
+  Authenticator  Authenticator[]
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  isQuiz         Boolean         @default(false)
+  age            Int?
+  gender         String?
+  height         Float?
+  weight         Float?
+  activity_level String?
+  goals          Goal[] // Tableau d'objectifs
+
   status            String?
   bio               String?
   health_conditions String?
   speciality        Speciality[]
   tel               String?
+  coach             Coach?       @relation("UserToCoach") // Relation sans fields et references
+  coachId           String?
+  Review            Review[]
 }
 
 model Goal {
@@ -45,6 +48,61 @@ model Speciality {
   title  String
   userId String
   user   User   @relation(fields: [userId], references: [id])
+}
+
+model Coach {
+  id           String            @id @default(cuid())
+  name         String
+  email        String            @unique
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  isQuiz       Boolean           @default(false)
+  image        String?
+  age          Int?
+  tel          String
+  gender       String?
+  bio          String?
+  price        Int?
+  year_exp     String?
+  note         Int?
+  diplome      Diplome[]
+  type_clients TypeClients[]
+  speciality   SpecialityCoach[]
+  userId       String?           @unique
+  user         User?             @relation("UserToCoach", fields: [userId], references: [id]) // Associe un User à un Coach ici
+  reviews      Review[]
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  content   String
+  rating    Int
+  userId    String
+  coachId   String
+  user      User     @relation(fields: [userId], references: [id])
+  coach     Coach    @relation(fields: [coachId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model TypeClients {
+  id      String @id @default(cuid())
+  title   String
+  coachId String
+  coach   Coach  @relation(fields: [coachId], references: [id])
+}
+
+model SpecialityCoach {
+  id      String @id @default(cuid())
+  title   String
+  coachId String
+  coach   Coach  @relation(fields: [coachId], references: [id])
+}
+
+model Diplome {
+  id      String @id @default(cuid())
+  title   String
+  coachId String
+  coach   Coach  @relation(fields: [coachId], references: [id])
 }
 
 model Account {
