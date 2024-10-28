@@ -7,6 +7,11 @@ export const getUser = async () => {
   const id = session.user.id;
   const user = await prisma.user.findUnique({
     where: { id },
+    include: {
+      speciality: true,
+      goals: true,
+      Review: true,
+    },
   });
 
   if (!user) {

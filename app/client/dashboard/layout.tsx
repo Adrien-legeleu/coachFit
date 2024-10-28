@@ -16,12 +16,13 @@ import {
   SidebarBody,
   SidebarLink,
 } from "@/components/aceternity/sideBar";
+import { UserSettingContextProvider } from "@/context/userSettingContext";
 
 export default function layout({ children }: { children: React.ReactNode }) {
   const links = [
     {
       label: "Dashboard",
-      href: "#",
+      href: "/client/dashboard/setting",
       icon: (
         <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
@@ -35,7 +36,7 @@ export default function layout({ children }: { children: React.ReactNode }) {
     },
     {
       label: "Settings",
-      href: "#",
+      href: "/client/dashboard/setting",
       icon: (
         <IconSettings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
@@ -86,7 +87,7 @@ export default function layout({ children }: { children: React.ReactNode }) {
           </div>
         </SidebarBody>
       </Sidebar>
-      {children}
+      <UserSettingContextProvider>{children}</UserSettingContextProvider>
     </div>
   );
 }
