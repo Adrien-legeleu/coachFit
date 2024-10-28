@@ -1,11 +1,11 @@
 "use client";
 import { getUser } from "@/lib/actionsUser";
 import React, { useEffect, useState } from "react";
-import SettingNoForm from "./SettingNoForm";
+
 import { useUserSettingContext } from "@/context/userSettingContext";
+import SettingForm from "./SettingForm";
 
 export default function Setting() {
-  const [isFormSetting, setIsFormSetting] = useState(false);
   const { setUser } = useUserSettingContext();
   useEffect(() => {
     const fetchUser = async () => {
@@ -18,17 +18,11 @@ export default function Setting() {
     };
     fetchUser();
   }, []);
-  const closeFormSetting = () => {
-    setIsFormSetting(false);
-  };
-  const openFormSetting = () => {
-    setIsFormSetting(true);
-  };
 
   return (
     <div>
       {" "}
-      <SettingNoForm openFormSetting={openFormSetting} />
+      <SettingForm />
     </div>
   );
 }

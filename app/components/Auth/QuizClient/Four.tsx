@@ -7,29 +7,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { IconChecklist } from "@tabler/icons-react";
 
 import { QuizProps } from "../QuizCoach/QuizCoach";
 import { toast } from "react-toastify";
 import { updateUserFour } from "@/lib/actionsQuizClient";
 import { useState } from "react";
-
-const goals = [
-  {
-    title: "Améliorer ma condition",
-  },
-  {
-    title: "Réduire mon stress",
-  },
-  {
-    title: "Gagner en endurance",
-  },
-  {
-    title: "Renforcer ma musculature",
-  },
-  {
-    title: "Optimiser mon sommeil",
-  },
-];
+import { goals } from "@/data/data";
 
 export const Four = ({ user, backQuizId, nextQuizId }: QuizProps) => {
   const [valueSelected, setValueSelected] = useState<string[]>([]);
@@ -73,13 +57,20 @@ export const Four = ({ user, backQuizId, nextQuizId }: QuizProps) => {
             return (
               <div
                 key={`level : ` + idx}
-                className={`shadow-2xl shadow-neutral-200/50 dark:shadow-neutral-800 p-3 dark:bg-neutral-900 dark:border-neutral-700/70  border-neutral-200/70  border-[1px] rounded-2xl flex items-center   cursor-pointer ease-in-out duration-200 ${
+                className={`shadow-2xl relative shadow-neutral-200/50 dark:shadow-neutral-800 p-3 dark:bg-neutral-900 dark:border-neutral-700/70  border-neutral-200/70  border-[1px] rounded-2xl flex items-center   cursor-pointer ease-in-out duration-200 ${
                   isSelected.includes(idx)
                     ? "bg-neutral-100 dark:bg-neutral-950 dark:border-neutral-600"
                     : "dark:bg-neutral-800 bg-neutral-50"
                 }`}
                 onClick={() => selectLevel(idx, goa.title)}
               >
+                <div
+                  className={`absolute bottom-4 right-4 ${
+                    isSelected.includes(idx) ? "block" : "hidden"
+                  }`}
+                >
+                  <IconChecklist stroke={1.5} />
+                </div>
                 <h3>{goa.title}</h3>
               </div>
             );
