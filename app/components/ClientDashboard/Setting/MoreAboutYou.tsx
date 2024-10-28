@@ -1,5 +1,5 @@
-import React from "react";
-
+"use client";
+import React, { useEffect, useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import {
@@ -15,9 +15,23 @@ import { activityLevels, healthConditions } from "@/data/data";
 import { User } from "@/type/User";
 interface MoreAboutYouProps {
   user: User | null;
+  selectedActivityLevel: string;
+  selectedGender: string;
+  selectedHealthCondition: string;
+  setSelectedHealthCondition: (value: string) => void;
+  setSelectedGender: (value: string) => void;
+  setSelectedActivityLevel: (value: string) => void;
 }
 
-export default function MoreAboutYou({ user }: MoreAboutYouProps) {
+export default function MoreAboutYou({
+  user,
+  setSelectedHealthCondition,
+  selectedHealthCondition,
+  selectedGender,
+  setSelectedGender,
+  selectedActivityLevel,
+  setSelectedActivityLevel,
+}: MoreAboutYouProps) {
   return (
     <div className="space-y-4">
       <h2 className="text-xl text-neutral-800 dark:text-neutral-100">
@@ -79,7 +93,8 @@ export default function MoreAboutYou({ user }: MoreAboutYouProps) {
 
           <Select
             required
-            value={user?.health_conditions ?? ""}
+            value={selectedHealthCondition} // Utilisez l'état local pour la valeur contrôlée
+            onValueChange={setSelectedHealthCondition}
             name="health_conditions"
           >
             <SelectTrigger className="">
@@ -105,7 +120,12 @@ export default function MoreAboutYou({ user }: MoreAboutYouProps) {
         </li>
         <li className="space-y-1">
           <Label htmlFor="activity_level">Votre niveau d'activité</Label>
-          <Select required value={user?.activity_level ?? ""}>
+          <Select
+            name="activity_level"
+            required
+            value={selectedActivityLevel} // Utilisez l'état local pour la valeur contrôlée
+            onValueChange={setSelectedActivityLevel}
+          >
             <SelectTrigger className="">
               <SelectValue placeholder="Sélectionnez votre niveau d'activité" />
             </SelectTrigger>
@@ -129,7 +149,12 @@ export default function MoreAboutYou({ user }: MoreAboutYouProps) {
         </li>
         <li className="space-y-1">
           <Label htmlFor="gender">Votre sexe</Label>
-          <Select required name="sex" value={user?.gender ?? ""}>
+          <Select
+            required
+            name="sex"
+            value={selectedGender} // Utilisez l'état local pour la valeur contrôlée
+            onValueChange={setSelectedGender}
+          >
             <SelectTrigger>
               <SelectValue placeholder="Sélectionnez votre sexe" />
             </SelectTrigger>

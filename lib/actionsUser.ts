@@ -35,7 +35,7 @@ export const updateUser = async (
   // const imageUrl=formData.get("image-url")
   const heightData = formData.get("height");
   const height = heightData !== null ? Number(heightData) : null;
-  const weightData = formData.get("wieght");
+  const weightData = formData.get("weight");
   const weight =
     weightData !== null
       ? parseFloat(weightData.toString().replace(",", "."))
@@ -61,6 +61,22 @@ export const updateUser = async (
       bio,
     },
   });
+  console.log(
+    name,
+    age,
+    height,
+    weight,
+    activity_level,
+    health_conditions,
+    email,
+    tel,
+    gender,
+    bio,
+    specialities,
+    goals,
+    id
+  );
+
   const goal = goals.map((title) => ({ title, userId: id }));
   const speciality = specialities.map((title) => ({ title, userId: id }));
 

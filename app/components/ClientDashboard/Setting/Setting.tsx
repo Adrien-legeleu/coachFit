@@ -6,11 +6,13 @@ import { useUserSettingContext } from "@/context/userSettingContext";
 import SettingForm from "./SettingForm";
 
 export default function Setting() {
-  const { setUser } = useUserSettingContext();
+  const { setUser, isLoadingFalse, isLoadingTrue } = useUserSettingContext();
   useEffect(() => {
     const fetchUser = async () => {
+      isLoadingTrue();
       try {
         const userData = await getUser();
+        isLoadingFalse();
         setUser(userData);
       } catch (error) {
         console.error("erreur fetching user");

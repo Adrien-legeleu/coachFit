@@ -10,11 +10,17 @@ import {
 interface ContextProps {
   user: User | null;
   setUser: Dispatch<SetStateAction<User | null>>;
+  isLoading: Boolean;
+  isLoadingFalse: () => void;
+  isLoadingTrue: () => void;
 }
 
 export const UserSettingContext = createContext<ContextProps>({
   user: null,
   setUser: () => {},
+  isLoading: true,
+  isLoadingFalse: () => {},
+  isLoadingTrue: () => {},
 });
 
 export const UserSettingContextProvider = ({
@@ -23,9 +29,18 @@ export const UserSettingContextProvider = ({
   children: React.ReactNode;
 }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setisLoading] = useState(true);
+  const isLoadingFalse = () => {
+    setisLoading(false);
+  };
+  const isLoadingTrue = () => {
+    setisLoading(true);
+  };
 
   return (
-    <UserSettingContext.Provider value={{ user, setUser }}>
+    <UserSettingContext.Provider
+      value={{ user, setUser, isLoading, isLoadingFalse, isLoadingTrue }}
+    >
       {children}
     </UserSettingContext.Provider>
   );
