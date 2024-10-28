@@ -10,6 +10,7 @@ import { User } from "@/type/User";
 import MoreAboutYou from "./MoreAboutYou";
 import { goals, specialties } from "@/data/data";
 import { getUser } from "@/lib/actionsUser";
+import Specialities from "./Specialities";
 
 export interface UserProps {
   user: User | null;
@@ -17,6 +18,13 @@ export interface UserProps {
 
 export default function SettingForm() {
   const { user } = useUserSettingContext();
+
+  //form send
+
+  const submitSettingClient = async () => {
+    try {
+    } catch (error) {}
+  };
 
   //Goal
   const [valueSelectedGoals, setValueSelectedGoals] = useState<string[]>([]);
@@ -64,25 +72,32 @@ export default function SettingForm() {
   };
   const findSpecialities = async () => {
     const userToSpecialities = await getUser();
+    console.log(userToSpecialities);
+
     const selectedSpecialities = new Set<number>();
+
     specialties.map((speciality, idx) => {
       userToSpecialities?.speciality?.forEach((specialityExisted) => {
+        console.log(speciality.title, specialityExisted.title);
+
         if (speciality.title === specialityExisted.title) {
           selectedSpecialities.add(idx);
         }
       });
     });
+    console.log(selectedSpecialities);
 
-    setIsSelectedGoals(Array.from(selectedSpecialities));
+    setIsSelectedSpecialities(Array.from(selectedSpecialities));
   };
 
   useEffect(() => {
     findGoals();
+    findSpecialities();
   }, []);
 
   return (
     <form className="flex w-2/3 flex-col mx-auto mt-20">
-      <div className="fixed bottom-10 right-32">
+      <div className="fixed bottom-10 right-32 z-50 space-x-2">
         <Button variant="secondary">
           <IconArrowBack stroke={1.5} />
           Annuler
@@ -104,9 +119,12 @@ export default function SettingForm() {
         <Separator />
         <div className="space-y-4">
           <h2 className="text-xl text-neutral-800 dark:text-neutral-100">
-            Vos domaine de compétences
+            Vos spécialités
           </h2>
-          <div></div>
+          <Specialities
+            selectSpecialities={selectSpecialities}
+            isSelectedSpecialities={isSelectedSpecialities}
+          />
         </div>
         <Separator />
         <div className="space-y-4">

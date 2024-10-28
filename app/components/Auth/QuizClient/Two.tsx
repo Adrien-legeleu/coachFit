@@ -12,29 +12,7 @@ import { QuizProps } from "./QuizClient";
 import { toast } from "react-toastify";
 import { updateUserTwo } from "@/lib/actionsQuizClient";
 import { useState } from "react";
-
-const activityLevels = [
-  {
-    title: "Initiation",
-    description:
-      "Jusqu'à 2h d'activité hebdomadaire : pour une mise en forme légère et progressive.",
-  },
-  {
-    title: "Équilibre",
-    description:
-      "Entre 2h et 5h d'activité par semaine : pour maintenir un mode de vie actif.",
-  },
-  {
-    title: "Performance",
-    description:
-      "Entre 5h et 8h d'activité par semaine : idéal pour progresser et se renforcer.",
-  },
-  {
-    title: "Excellence",
-    description:
-      "Plus de 8h d'activité par semaine : pour les passionnés et adeptes de défis intenses.",
-  },
-];
+import { activityLevels } from "@/data/data";
 
 export const Two = ({ user, backQuizId, nextQuizId }: QuizProps) => {
   const [valueSelected, setValueSelected] = useState("");

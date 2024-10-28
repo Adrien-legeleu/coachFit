@@ -13,21 +13,38 @@ export default function InformationsPersonnal({ user }: UserProps) {
         <ul className="text-neutral-600 dark:text-neutral-400 space-y-1">
           <div>
             <Label htmlFor="name">Nom</Label>
-            <Input defaultValue={user?.name ?? ""} id="name" name="name" />
+            <Input
+              defaultValue={user?.name ?? ""}
+              id="name"
+              name="name"
+              required
+            />
           </div>
           <div>
             <Label htmlFor="email">Email</Label>
-            <Input defaultValue={user?.email ?? ""} id="email" name="email" />
+            <Input
+              defaultValue={user?.email ?? ""}
+              id="email"
+              name="email"
+              disabled
+              required
+            />
           </div>
           <div>
             <Label htmlFor="tel">Téléphone</Label>
-            <Input defaultValue={user?.tel ?? ""} id="tel" name="tel" />
+            <Input
+              defaultValue={user?.tel ?? ""}
+              id="tel"
+              name="tel"
+              required
+            />
           </div>
         </ul>
 
         <div className="text-neutral-600 dark:text-neutral-400">
           <span>Votre bio</span>
           <textarea
+            required
             defaultValue={user?.bio ?? ""}
             id="bio"
             name="bio"

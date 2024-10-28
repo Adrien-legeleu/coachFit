@@ -12,29 +12,7 @@ import { QuizProps } from "./QuizClient";
 import { toast } from "react-toastify";
 import { updateUserThree } from "@/lib/actionsQuizClient";
 import { useState } from "react";
-
-const healthConditions = [
-  {
-    title: "Fragile",
-    description:
-      "État de santé nécessitant des soins réguliers ou des précautions particulières.",
-  },
-  {
-    title: "Moyen",
-    description:
-      "Santé globalement stable, avec quelques précautions ou limitations.",
-  },
-  {
-    title: "Bon",
-    description:
-      "Bonne condition de santé, permettant une activité régulière sans contraintes majeures.",
-  },
-  {
-    title: "Optimal",
-    description:
-      "Santé excellente, sans limitations : idéal pour un mode de vie actif.",
-  },
-];
+import { healthConditions } from "@/data/data";
 
 export const Three = ({ user, backQuizId, nextQuizId }: QuizProps) => {
   const [valueSelected, setValueSelected] = useState("");

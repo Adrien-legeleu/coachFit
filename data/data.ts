@@ -33,3 +33,48 @@ export const specialties = [
     title: "Coaching mental",
   },
 ];
+
+export const healthConditions = [
+  {
+    title: "Fragile",
+    description:
+      "État de santé nécessitant des soins réguliers ou des précautions particulières.",
+  },
+  {
+    title: "Moyen",
+    description:
+      "Santé globalement stable, avec quelques précautions ou limitations.",
+  },
+  {
+    title: "Bon",
+    description:
+      "Bonne condition de santé, permettant une activité régulière sans contraintes majeures.",
+  },
+  {
+    title: "Optimal",
+    description:
+      "Santé excellente, sans limitations : idéal pour un mode de vie actif.",
+  },
+];
+export const activityLevels = [
+  {
+    title: "Initiation",
+    description:
+      "Jusqu'à 2h d'activité hebdomadaire : pour une mise en forme légère et progressive.",
+  },
+  {
+    title: "Équilibre",
+    description:
+      "Entre 2h et 5h d'activité par semaine : pour maintenir un mode de vie actif.",
+  },
+  {
+    title: "Performance",
+    description:
+      "Entre 5h et 8h d'activité par semaine : idéal pour progresser et se renforcer.",
+  },
+  {
+    title: "Excellence",
+    description:
+      "Plus de 8h d'activité par semaine : pour les passionnés et adeptes de défis intenses.",
+  },
+];
