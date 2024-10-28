@@ -40,7 +40,9 @@ export default function MoreAboutYou({
 
       <ul className="text-neutral-600 dark:text-neutral-400 grid grid-cols-3 gap-8">
         <li className="space-y-1">
-          <Label htmlFor="height">Taille</Label>
+          <Label className="ml-1" htmlFor="height">
+            Taille
+          </Label>
           <div className="relative">
             <Input
               defaultValue={user?.height ?? ""}
@@ -56,7 +58,9 @@ export default function MoreAboutYou({
           </div>
         </li>
         <li className="space-y-1">
-          <Label htmlFor="weight">Poids</Label>
+          <Label htmlFor="weight" className="ml-1">
+            Poids
+          </Label>
           <div className="relative">
             <Input
               defaultValue={user?.weight ?? ""}
@@ -73,7 +77,9 @@ export default function MoreAboutYou({
           </div>
         </li>
         <li className="space-y-1">
-          <Label htmlFor="age">Age</Label>
+          <Label className="ml-1" htmlFor="age">
+            Age
+          </Label>
           <div className="relative">
             <Input
               defaultValue={user?.age ?? ""}
@@ -89,7 +95,9 @@ export default function MoreAboutYou({
           </div>
         </li>
         <li className="space-y-1">
-          <Label htmlFor="health_conditions">Votre condition physique</Label>
+          <Label className="ml-1" htmlFor="health_conditions">
+            Votre condition physique
+          </Label>
 
           <Select
             required
@@ -119,7 +127,9 @@ export default function MoreAboutYou({
           </Select>
         </li>
         <li className="space-y-1">
-          <Label htmlFor="activity_level">Votre niveau d'activité</Label>
+          <Label className="ml-1" htmlFor="activity_level">
+            Votre niveau d'activité
+          </Label>
           <Select
             name="activity_level"
             required
@@ -148,7 +158,9 @@ export default function MoreAboutYou({
           </Select>
         </li>
         <li className="space-y-1">
-          <Label htmlFor="gender">Votre sexe</Label>
+          <Label className="ml-1" htmlFor="gender">
+            Votre sexe
+          </Label>
           <Select
             required
             name="sex"

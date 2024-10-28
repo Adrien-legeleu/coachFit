@@ -10,9 +10,11 @@ export default function InformationsPersonnal({ user }: UserProps) {
         Vos informations essentielles
       </h2>
       <div className="flex justify-between">
-        <ul className="text-neutral-600 dark:text-neutral-400 space-y-1">
-          <div>
-            <Label htmlFor="name">Nom</Label>
+        <ul className="text-neutral-600 dark:text-neutral-400 space-y-8">
+          <div className="space-y-1">
+            <Label htmlFor="name" className="ml-1">
+              Nom
+            </Label>
             <Input
               defaultValue={user?.name ?? ""}
               id="name"
@@ -20,8 +22,10 @@ export default function InformationsPersonnal({ user }: UserProps) {
               required
             />
           </div>
-          <div>
-            <Label htmlFor="email">Email</Label>
+          <div className="space-y-1">
+            <Label htmlFor="email" className="ml-1">
+              Email
+            </Label>
             <Input
               defaultValue={user?.email ?? ""}
               id="email"
@@ -30,8 +34,10 @@ export default function InformationsPersonnal({ user }: UserProps) {
               required
             />
           </div>
-          <div>
-            <Label htmlFor="tel">Téléphone</Label>
+          <div className="space-y-1">
+            <Label htmlFor="tel" className="ml-1">
+              Téléphone
+            </Label>
             <Input
               defaultValue={user?.tel ?? ""}
               id="tel"
@@ -41,8 +47,8 @@ export default function InformationsPersonnal({ user }: UserProps) {
           </div>
         </ul>
 
-        <div className="text-neutral-600 dark:text-neutral-400">
-          <span>Votre bio</span>
+        <div className="text-neutral-600 dark:text-neutral-400 space-y-1">
+          <span className="ml-1">Votre bio</span>
           <textarea
             required
             defaultValue={user?.bio ?? ""}
