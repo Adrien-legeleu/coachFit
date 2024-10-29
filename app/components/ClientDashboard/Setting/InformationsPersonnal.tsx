@@ -3,8 +3,26 @@ import { Label } from "@/components/ui/label";
 import React from "react";
 import { UserProps } from "./SettingForm";
 import { ImageProfil } from "../../Image/ImageProfil";
+import { updateUserImageProfil } from "@/lib/actionsUser";
+import { toast } from "react-toastify";
 
 export default function InformationsPersonnal({ user }: UserProps) {
+  const onSubmit = async (imageSelected: string) => {
+    if (user?.id) {
+      try {
+        await updateUserImageProfil(imageSelected, user?.id);
+        toast.success(
+          "Modification de votre image de profil réalisé avec succès"
+        );
+      } catch (error) {
+        toast.error("erreur lors de la modification de l'image de profil");
+      }
+    } else {
+      toast.error(
+        "User n'est pas défini (votre id) , veuillez vous reconnectez s'il vous plait"
+      );
+    }
+  };
   return (
     <div className="space-y-4">
       <h2 className="text-xl text-neutral-800 dark:text-neutral-100">
@@ -61,7 +79,7 @@ export default function InformationsPersonnal({ user }: UserProps) {
         </div>
 
         <div>
-          <ImageProfil user={user} />
+          <ImageProfil image={user?.image ?? ""} onSubmit={onSubmit} />
         </div>
       </div>
     </div>

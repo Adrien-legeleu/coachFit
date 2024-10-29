@@ -20,6 +20,7 @@ interface MoreAboutYouProps {
   coach: Coach | null;
   selectedAYearExp: string;
   selectedGender: string;
+  valuesDiplome: string[];
   handleSelectDiplomeChange: (value: string[]) => void;
   setSelectedGender: (value: string) => void;
   setSelectedAYearExp: (value: string) => void;
@@ -32,6 +33,7 @@ export default function MoreAboutYou({
   setSelectedGender,
   selectedAYearExp,
   setSelectedAYearExp,
+  valuesDiplome,
 }: MoreAboutYouProps) {
   return (
     <div className="space-y-4">
@@ -42,7 +44,7 @@ export default function MoreAboutYou({
       <ul className="text-neutral-600 dark:text-neutral-400 grid grid-cols-3 gap-8">
         <li className="space-y-1">
           <Label className="ml-1" htmlFor="price">
-            Prix
+            Prix mensuelle
           </Label>
           <div className="relative">
             <Input
@@ -54,7 +56,7 @@ export default function MoreAboutYou({
               required
             />
             <span className="absolute top-1/2 -translate-y-1/2 right-4">
-              euros
+              euros/mois
             </span>
           </div>
         </li>
@@ -88,6 +90,7 @@ export default function MoreAboutYou({
             onChange={handleSelectDiplomeChange}
             style={{ width: "100%" }}
             options={diplomes}
+            value={valuesDiplome}
           />
         </li>
         <li className="space-y-1">

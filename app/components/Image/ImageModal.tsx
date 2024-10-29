@@ -8,38 +8,19 @@ import {
 } from "@/components/ui/dialog";
 import { imagesProfil } from "@/data/imageData";
 
-import { updateUserImageProfil } from "@/lib/actionsUser";
-import { User } from "@/type/User";
 import Image from "next/image";
-import { toast } from "react-toastify";
 
 interface ImageModal {
-  user: User | null;
   imageSelected: string;
   selectimage: (image: string) => void;
+  onSubmit: (imageSelected: string) => void;
 }
 
 export default function ImageModal({
   selectimage,
   imageSelected,
-  user,
+  onSubmit,
 }: ImageModal) {
-  const onSubmit = async () => {
-    if (user?.id) {
-      try {
-        await updateUserImageProfil(imageSelected, user?.id);
-        toast.success(
-          "Modification de votre image de profil réalisé avec succès"
-        );
-      } catch (error) {
-        toast.error("erreur lors de la modification de l'image de profil");
-      }
-    } else {
-      toast.error(
-        "User n'est pas défini (votre id) , veuillez vous reconnectez s'il vous plait"
-      );
-    }
-  };
   return (
     <DialogContent className="sm:max-w-[525px] max-h-[350px] h-full ">
       <DialogHeader>
@@ -70,7 +51,7 @@ export default function ImageModal({
         })}
       </div>
       <DialogFooter>
-        <Button type="submit" onClick={onSubmit}>
+        <Button type="submit" onClick={() => onSubmit(imageSelected)}>
           sauvegarder
         </Button>
       </DialogFooter>

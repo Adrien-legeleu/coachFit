@@ -33,6 +33,9 @@ export default function SettingForm() {
 
   const fetchCoach = async () => {
     if (coach) {
+      console.log("udisuisudiuisudiuiduiduiuiuiuiuiu");
+      console.log(coach?.diplome?.map((dipl) => dipl.title) ?? []);
+
       setvaluesDiplome(coach?.diplome?.map((dipl) => dipl.title) ?? []);
       setSelectedGender(coach.gender ?? "");
       setSelectedAYearExp(coach.year_exp ?? "");
@@ -45,7 +48,7 @@ export default function SettingForm() {
 
   useEffect(() => {
     fetchCoach();
-  }, [coach]); // Ajoutez coach comme dépendance
+  }, [coach]);
 
   //Type de clients
   const [valueSelectedTypeClients, setValueSelectedTypeClients] = useState<
@@ -129,7 +132,7 @@ export default function SettingForm() {
   }, [coach]); // Ajoutez coach comme dépendance
 
   //form send
-  const submitSettingClient = async (e: React.FormEvent<HTMLFormElement>) => {
+  const submitSettingCoach = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (coach?.id) {
       try {
@@ -158,7 +161,7 @@ export default function SettingForm() {
       ) : (
         <form
           className="flex w-2/3 flex-col mx-auto mt-20"
-          // onSubmit={submitSettingClient}
+          onSubmit={submitSettingCoach}
         >
           <div className="fixed bottom-10 right-32 z-50 space-x-2">
             <Button type="button" variant="secondary" onClick={refreshPage}>
@@ -176,15 +179,13 @@ export default function SettingForm() {
           </h1>
 
           <div className="space-y-8">
-            <InformationsPersonnal coach={coach} />{" "}
-            {/* Remplacez user par coach */}
-            <Separator />
+            <InformationsPersonnal coach={coach} /> <Separator />
             <MoreAboutYou
               coach={coach} // Remplacez user par coach
               handleSelectDiplomeChange={handleSelectDiplomeChange}
               selectedGender={selectedGender}
               setSelectedAYearExp={setSelectedAYearExp}
-              // selectedDiplome={selectedDiplome}
+              valuesDiplome={valuesDiplome}
               setSelectedGender={setSelectedGender}
               selectedAYearExp={selectedAYearExp}
             />
@@ -205,7 +206,7 @@ export default function SettingForm() {
               </h2>
               <TypeClients
                 selectTypeClients={selectTypeClients}
-                isSelectedSpecialities={isSelectedSpecialities}
+                isSelectedTypeClients={isSelectedTypeClients}
               />
             </div>
           </div>
