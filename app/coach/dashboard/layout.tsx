@@ -16,7 +16,7 @@ import {
   SidebarBody,
   SidebarLink,
 } from "@/components/aceternity/sideBar";
-import { UserSettingContextProvider } from "@/context/userSettingContext";
+import { CoachSettingContextProvider } from "@/context/coachSettingContext";
 
 export default function layout({ children }: { children: React.ReactNode }) {
   const links = [
@@ -87,7 +87,7 @@ export default function layout({ children }: { children: React.ReactNode }) {
           </div>
         </SidebarBody>
       </Sidebar>
-      <UserSettingContextProvider>{children}</UserSettingContextProvider>
+      <CoachSettingContextProvider>{children}</CoachSettingContextProvider>
     </div>
   );
 }

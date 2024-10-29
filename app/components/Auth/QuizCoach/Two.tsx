@@ -12,37 +12,11 @@ import { QuizProps } from "./QuizCoach";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { updateCoachTwo } from "@/lib/actionsQuizCoach";
+import { year_exp } from "@/data/dataCoach";
 
 // Définition du type pour les options d'expérience
-type YearExpOption = {
-  title: string;
-  value: string;
-  description: string;
-};
 
 // Options d'expérience pour les coachs
-const year_exp: YearExpOption[] = [
-  {
-    title: "Débutant",
-    value: "debutant",
-    description: "Moins d'un an d'expérience en coaching.",
-  },
-  {
-    title: "Intermédiaire",
-    value: "intermediate",
-    description: "Entre 1 et 3 ans d'expérience en coaching.",
-  },
-  {
-    title: "Avancé",
-    value: "advanced",
-    description: "Entre 3 et 5 ans d'expérience en coaching.",
-  },
-  {
-    title: "Expert",
-    value: "senior",
-    description: "Plus de 5 ans d'expérience en coaching.",
-  },
-];
 
 // Composant principal
 export const Two = ({ user, backQuizId, nextQuizId }: QuizProps) => {

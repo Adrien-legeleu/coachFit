@@ -12,30 +12,9 @@ import { QuizProps } from "../QuizClient/QuizClient";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { updateCoachFour } from "@/lib/actionsQuizCoach";
+import { clientTypes } from "@/data/dataCoach";
 
 // Options de type de clients que le coach souhaite
-const clientTypes = [
-  {
-    title: "Débutants",
-    description: "Clients qui commencent leur parcours de fitness.",
-  },
-  {
-    title: "Intermédiaires",
-    description: "Clients avec une certaine expérience en activité physique.",
-  },
-  {
-    title: "Avancés",
-    description: "Clients qui cherchent à améliorer leurs performances.",
-  },
-  {
-    title: "Seniors",
-    description: "Clients expérimentés qui visent des défis intenses.",
-  },
-  {
-    title: "Réhabilitation",
-    description: "Clients ayant besoin d'un accompagnement spécifique.",
-  },
-];
 
 export const Four = ({ user, backQuizId, nextQuizId }: QuizProps) => {
   const [valueSelected, setValueSelected] = useState<string[]>([]);

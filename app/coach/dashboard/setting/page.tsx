@@ -1,3 +1,4 @@
+import Setting from "@/app/components/CoachDashboard/Setting/Setting";
 import { Footer } from "@/app/components/Footer/Footer";
 
 import React from "react";

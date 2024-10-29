@@ -1,4 +1,4 @@
-import { specialties } from "@/data/dataUser";
+import { specialties } from "@/data/dataCoach";
 import { IconChecklist } from "@tabler/icons-react";
 import React from "react";
 

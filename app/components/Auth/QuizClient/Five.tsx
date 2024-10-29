@@ -12,7 +12,7 @@ import { QuizProps } from "./QuizClient";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { updateUserFive } from "@/lib/actionsQuizClient";
-import { specialties } from "@/data/data";
+import { specialties } from "@/data/dataUser";
 
 // Tableau des spécialités
 

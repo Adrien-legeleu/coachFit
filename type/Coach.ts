@@ -1,0 +1,22 @@
+import { Review, Diplome, TypeClients, SpecialityCoach } from "@prisma/client";
+export type Coach = {
+  id: string;
+  name: string;
+  email: string;
+  createdAt: Date;
+  updatedAt: Date;
+  isQuiz: boolean;
+  image: string | null;
+  age: number | null;
+  tel: string | null;
+  gender: string | null;
+  bio: string | null;
+  price: number | null;
+  year_exp: string | null;
+  note: number | null;
+  diplome: Diplome[] | null;
+  type_clients: TypeClients[] | null;
+  speciality: SpecialityCoach[] | null;
+  userId: string | null;
+  reviews: Review[] | null;
+};

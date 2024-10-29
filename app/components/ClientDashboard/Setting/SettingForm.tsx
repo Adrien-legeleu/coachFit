@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import InformationsPersonnal from "./InformationsPersonnal";
 import { User } from "@/type/User";
 import MoreAboutYou from "./MoreAboutYou";
-import { goals, specialties } from "@/data/data";
+import { goals, specialties } from "@/data/dataUser";
 import { getUser, updateUser } from "@/lib/actionsUser";
 import Specialities from "./Specialities";
 import { toast } from "react-toastify";

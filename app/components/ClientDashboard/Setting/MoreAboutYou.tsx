@@ -11,7 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { activityLevels, healthConditions } from "@/data/data";
+import { activityLevels, healthConditions } from "@/data/dataUser";
 import { User } from "@/type/User";
 interface MoreAboutYouProps {
   user: User | null;

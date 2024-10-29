@@ -12,25 +12,9 @@ import { QuizProps } from "./QuizCoach";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { updateCoachFive } from "@/lib/actionsQuizCoach";
+import { specialties } from "@/data/dataCoach";
 
 // Tableau des spécialités
-const specialties = [
-  {
-    title: "Nutrition",
-  },
-  {
-    title: "Fitness",
-  },
-  {
-    title: "Bien-être",
-  },
-  {
-    title: "Réhabilitation",
-  },
-  {
-    title: "Coaching mental",
-  },
-];
 
 export const Five = ({ user, backQuizId, nextQuizId }: QuizProps) => {
   const [valueSelected, setValueSelected] = useState<string[]>([]);

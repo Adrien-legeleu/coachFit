@@ -12,7 +12,7 @@ import { QuizProps } from "./QuizClient";
 import { toast } from "react-toastify";
 import { updateUserTwo } from "@/lib/actionsQuizClient";
 import { useState } from "react";
-import { activityLevels } from "@/data/data";
+import { activityLevels } from "@/data/dataUser";
 
 export const Two = ({ user, backQuizId, nextQuizId }: QuizProps) => {
   const [valueSelected, setValueSelected] = useState("");

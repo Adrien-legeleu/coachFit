@@ -1,6 +1,6 @@
 "use client";
 
-import { goals } from "@/data/data";
+import { goals } from "@/data/dataUser";
 import { IconChecklist } from "@tabler/icons-react";
 
 interface GoalProps {

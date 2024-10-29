@@ -11,17 +11,9 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import { updateCoachThree } from "@/lib/actionsQuizCoach";
 import { QuizProps } from "./QuizCoach";
+import { diplomes } from "@/data/dataCoach";
 
 // Options de type de diplômes que le coach souhaite
-const diplomes = [
-  { value: "Bac" },
-  { value: "Brevet" },
-  { value: "CAP" },
-  { value: "TEC" },
-  { value: "BTS" },
-  { value: "Licence" },
-  { value: "Master" },
-];
 
 export const Three = ({ user, backQuizId, nextQuizId }: QuizProps) => {
   const [valueSelected, setSelectedValues] = useState<string[]>([]);

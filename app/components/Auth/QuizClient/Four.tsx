@@ -13,7 +13,7 @@ import { QuizProps } from "../QuizCoach/QuizCoach";
 import { toast } from "react-toastify";
 import { updateUserFour } from "@/lib/actionsQuizClient";
 import { useState } from "react";
-import { goals } from "@/data/data";
+import { goals } from "@/data/dataUser";
 
 export const Four = ({ user, backQuizId, nextQuizId }: QuizProps) => {
   const [valueSelected, setValueSelected] = useState<string[]>([]);
