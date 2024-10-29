@@ -85,3 +85,12 @@ export const updateUser = async (
   await prisma.goal.createMany({ data: goal });
   await prisma.speciality.createMany({ data: speciality });
 };
+
+export const updateUserImageProfil = async (image: string, id: string) => {
+  await prisma.user.update({
+    where: { id },
+    data: {
+      image,
+    },
+  });
+};

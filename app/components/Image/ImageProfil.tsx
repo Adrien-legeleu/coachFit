@@ -1,47 +1,39 @@
+"use client";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import { User } from "@/type/User";
+import Image from "next/image";
+import ImageModal from "./ImageModal";
+import { useState } from "react";
 
-export function ImageProfil() {
+export function ImageProfil({ user }: { user: User | null }) {
+  const [imageSelected, setImageSelected] = useState<string>(user?.image ?? "");
+  const selectimage = (image: string) => {
+    setImageSelected(image);
+  };
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="outline">Edit Profile</Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>Edit profile</DialogTitle>
-          <DialogDescription>
-            Make changes to your profile here. Click save when you're done.
-          </DialogDescription>
-        </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Name
-            </Label>
-            <Input id="name" value="Pedro Duarte" className="col-span-3" />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
-              Username
-            </Label>
-            <Input id="username" value="@peduarte" className="col-span-3" />
-          </div>
-        </div>
-        <DialogFooter>
-          <Button type="submit">sauvegarder</Button>
-        </DialogFooter>
-      </DialogContent>
+      <div className="space-y-4">
+        <DialogTrigger asChild>
+          <Button
+            variant="ghost"
+            className="p-0 w-[200px] h-[200px] bg-transparent rounded-full"
+          >
+            <Image
+              src={imageSelected}
+              alt="image de profil de l'utilisateur"
+              width={250}
+              height={250}
+              className="h-full w-full object-cover rounded-full"
+            />
+          </Button>
+        </DialogTrigger>
+      </div>
+      <ImageModal
+        imageSelected={imageSelected}
+        selectimage={selectimage}
+        user={user}
+      />
     </Dialog>
   );
 }
