@@ -8,6 +8,7 @@ export const getCoach = async (userId: string) => {
       diplome: true,
       speciality: true,
       type_clients: true,
+      reviews: true,
     },
   });
   console.log("Coach found in DB:", coach);
@@ -68,6 +69,7 @@ export const updateCoach = async (
       year_exp,
       bio,
       price,
+      isQuiz: true,
     },
   });
 

@@ -1,7 +1,6 @@
 "use server";
 import { getRequiredAuthSession } from "./auth";
 import { prisma } from "./prisma";
-import { specialties } from "../data/dataUser";
 
 export const getUser = async () => {
   const session = await getRequiredAuthSession();

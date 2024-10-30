@@ -1,43 +1,34 @@
-"use client";
-import { Button } from "@/components/ui/button";
-import { getCoach } from "@/lib/actionsCoach";
+import { getAllCoachs } from "@/lib/actionsAllCoachs";
+import Image from "next/image";
 
-import { getUser } from "@/lib/actionsUser";
-import Link from "next/link";
-
-import { useEffect, useState } from "react";
-
-export default function DashboardPage() {
-  const [user, setUser] = useState<any>(null);
-  const [coach, setCoach] = useState<any>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const userData = await getUser();
-        const coachData = await getCoach(userData.id);
-        setUser(userData);
-        setCoach(coachData);
-        console.log(coachData);
-      } catch (error) {
-        console.error("error fetching data");
-      }
-    };
-    fetchData();
-  }, []);
+export default async function DashboardPage() {
+  const allCoachs = await getAllCoachs();
 
   return (
-    <div className="h-screen flex items-center justify-center">
-      {user && user.health_conditions}
-      {coach ? (
-        <Link href="/coach/dashboard">
-          <Button>Voir votre compte Coach </Button>
-        </Link>
-      ) : (
-        <Link href="/coach/information">
-          <Button>Devenir Coach</Button>
-        </Link>
-      )}
+    <div className="w-full grid grid-cols-3 gap-5 p-20 h-screen overflow-y-auto">
+      {allCoachs.map((coach, idx) => {
+        return (
+          <div key={"coach number : " + idx}>
+            <div className="relative p-10 w-full space-y-6">
+              <Image
+                src={coach?.image ?? ""}
+                width={500}
+                height={500}
+                alt="image"
+                className="w-full shadow-2xl shadow-black/10  dark:shadow-white/10 h-full object-cover rounded-full"
+              />
+              <div className="rounded-3xl bg-neutral-50 p-4">
+                <h3>{coach.name}</h3>
+                <p>{coach.year_exp}</p>
+              </div>
+              <div className="rounded-3xl bg-neutral-50 p-4">
+                <p>{coach.note ? coach.note : "pas encore de note"}</p>
+                {/*// rajouter le nombre d'ais et le logo etoile */}
+              </div>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }

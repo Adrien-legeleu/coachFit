@@ -5,6 +5,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Header from "./components/Header/Header";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { UserSettingContextProvider } from "@/context/userSettingContext";
+import { CoachSettingContextProvider } from "@/context/coachSettingContext";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -32,16 +34,20 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Header />
-          {children}
-          <ToastContainer />
-        </ThemeProvider>
+        <UserSettingContextProvider>
+          <CoachSettingContextProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <Header />
+              {children}
+              <ToastContainer />
+            </ThemeProvider>
+          </CoachSettingContextProvider>
+        </UserSettingContextProvider>
       </body>
     </html>
   );

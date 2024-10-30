@@ -1,10 +1,13 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+
+import Logo from "@/app/Logo.svg";
 
 import {
   IconArrowLeft,
   IconBrandTabler,
   IconSettings,
+  IconUser,
   IconUserBolt,
 } from "@tabler/icons-react";
 import Link from "next/link";
@@ -16,9 +19,12 @@ import {
   SidebarBody,
   SidebarLink,
 } from "@/components/aceternity/sideBar";
-import { CoachSettingContextProvider } from "@/context/coachSettingContext";
+
+import { useCoachSettingContext } from "@/context/coachSettingContext";
 
 export default function layout({ children }: { children: React.ReactNode }) {
+  const { coach } = useCoachSettingContext();
+
   const links = [
     {
       label: "Dashboard",
@@ -28,17 +34,17 @@ export default function layout({ children }: { children: React.ReactNode }) {
       ),
     },
     {
-      label: "Profile",
+      label: "Setting",
       href: "/coach/dashboard",
       icon: (
-        <IconUserBolt className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+        <IconUser className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
     {
-      label: "Settings",
-      href: "/coach/dashboard/setting",
+      label: "Profil",
+      href: "/coach/dashboard/profil",
       icon: (
-        <IconSettings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+        <IconUser className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
     {
@@ -61,7 +67,7 @@ export default function layout({ children }: { children: React.ReactNode }) {
       <Sidebar open={open} setOpen={setOpen}>
         <SidebarBody className="justify-between gap-10">
           <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-            {open ? <Logo /> : <LogoIcon />}
+            {open ? <LogoText /> : <LogoIcon />}
             <div className="mt-8 flex flex-col gap-2">
               {links.map((link, idx) => (
                 <SidebarLink key={idx} link={link} />
@@ -71,11 +77,11 @@ export default function layout({ children }: { children: React.ReactNode }) {
           <div>
             <SidebarLink
               link={{
-                label: "Manu Arora",
-                href: "#",
+                label: coach?.name ?? "",
+                href: "/coach/dashboard/profil",
                 icon: (
                   <Image
-                    src="https://assets.aceternity.com/manu.png"
+                    src={coach?.image ?? ""}
                     className="h-7 w-7 flex-shrink-0 rounded-full"
                     width={50}
                     height={50}
@@ -87,35 +93,41 @@ export default function layout({ children }: { children: React.ReactNode }) {
           </div>
         </SidebarBody>
       </Sidebar>
-      <CoachSettingContextProvider>{children}</CoachSettingContextProvider>
+      {children}
     </div>
   );
 }
 
-export const Logo = () => {
+export const LogoText = () => {
   return (
-    <Link
-      href="#"
-      className="font-normal flex space-x-2 items-center text-sm text-black py-1 relative z-20"
-    >
-      <div className="h-5 w-6 bg-black dark:bg-white rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0" />
+    <Link href="/coach/dashboard">
       <motion.span
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="font-medium text-black dark:text-white whitespace-pre"
+        className="items-center justify-center text-3xl font-bold tracking-wide gap-2 "
       >
-        Acet Labs
+        <Image
+          src={Logo}
+          width={30}
+          height={30}
+          alt="logo de coachFit"
+          className="h-10 w-10 object-cover"
+        />
+        CoachFit{" "}
       </motion.span>
     </Link>
   );
 };
 export const LogoIcon = () => {
   return (
-    <Link
-      href="#"
-      className="font-normal flex space-x-2 items-center text-sm text-black py-1 relative z-20"
-    >
-      <div className="h-5 w-6 bg-black dark:bg-white rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0" />
+    <Link href="/coach/dashboard" className=" z-20">
+      <Image
+        src={Logo}
+        width={30}
+        height={30}
+        alt="logo de coachFit"
+        className="h-10 w-10 object-cover"
+      />
     </Link>
   );
 };

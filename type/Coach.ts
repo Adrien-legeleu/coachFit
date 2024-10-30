@@ -2,7 +2,7 @@ import { Review, Diplome, TypeClients, SpecialityCoach } from "@prisma/client";
 export type Coach = {
   id: string;
   name: string;
-  email: string;
+  email: string | null;
   createdAt: Date;
   updatedAt: Date;
   isQuiz: boolean;

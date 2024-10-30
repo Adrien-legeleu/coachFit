@@ -1,9 +1,13 @@
+"use client";
+import { getCoach } from "@/lib/actionsCoach";
+import { getUser } from "@/lib/actionsUser";
 import { Coach } from "@/type/Coach";
 import {
   createContext,
   Dispatch,
   SetStateAction,
   useContext,
+  useEffect,
   useState,
 } from "react";
 
@@ -36,6 +40,20 @@ export const CoachSettingContextProvider = ({
   const isLoadingTrue = () => {
     setisLoading(true);
   };
+
+  const fetchCoach = async () => {
+    try {
+      const userData = await getUser();
+      const coachData = await getCoach(userData.id);
+      setCoach(coachData);
+    } catch (error) {
+      console.error("coach not found");
+    }
+  };
+
+  useEffect(() => {
+    fetchCoach();
+  }, []);
 
   return (
     <CoachSettingContext.Provider

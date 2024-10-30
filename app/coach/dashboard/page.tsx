@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { getCoach } from "@/lib/actionsCoach";
 import { getUser } from "@/lib/actionsUser";
+import Link from "next/link";
 
 import { useRouter } from "next/navigation";
 
@@ -35,7 +36,9 @@ export default function DashboardPage() {
   return (
     <div className="h-screen flex items-center justify-center">
       {coach?.name} {coach?.price}/mois
-      <Button>Retourner sur votre compte</Button>
+      <Link href="/client/dashboard">
+        <Button>Retourner sur votre compte</Button>
+      </Link>
     </div>
   );
 }

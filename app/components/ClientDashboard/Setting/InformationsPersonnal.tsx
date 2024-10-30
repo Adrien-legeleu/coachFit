@@ -28,7 +28,7 @@ export default function InformationsPersonnal({ user }: UserProps) {
       <h2 className="text-xl text-neutral-800 dark:text-neutral-100">
         Vos informations essentielles
       </h2>
-      <div className="flex justify-between">
+      <div className="flex 6 gap-6 justify-between">
         <ul className="text-neutral-600 dark:text-neutral-400 space-y-8">
           <div className="space-y-1">
             <Label htmlFor="name" className="ml-1">
