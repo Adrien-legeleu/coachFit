@@ -22,7 +22,7 @@ export default async function pageCoachId({ params }: ParamsCoachId) {
     toast.info("coach est pas trouvé à l'id:" + params.id);
   }
   return (
-    <div className="grid-cols-60/40 grid  w-full p-16 overflow-y-auto">
+    <div className="grid-cols-60/40 grid relative  w-full p-16 overflow-y-auto">
       <CoachToIdGrid1 coachToId={coachToId} />
       <CoachToIdGrid2 coachToId={coachToId} />
     </div>

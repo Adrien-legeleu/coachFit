@@ -1,4 +1,5 @@
 import { CoachAccueilProps } from "@/app/client/dashboard/[id]/page";
+import { Separator } from "@/components/ui/separator";
 
 import React from "react";
 
@@ -46,8 +47,7 @@ export default function CoachToIdGrid1({ coachToId }: CoachAccueilProps) {
         <h3 className="text-xl font-semibold text-muted-foreground">
           A propos de {coachToId.name}
         </h3>
-        <div className="space-y-2">
-          <h5 className="text-lg">Mes diplômes</h5>
+        <div className="space-y-4">
           <ul className="flex items-start gap-1 flex-col">
             {coachToId.diplome?.map((dipl: any, idx: number) => {
               return (
@@ -57,6 +57,8 @@ export default function CoachToIdGrid1({ coachToId }: CoachAccueilProps) {
               );
             })}
           </ul>
+          <Separator />
+          <div>avis</div>
         </div>
       </div>
     </div>
