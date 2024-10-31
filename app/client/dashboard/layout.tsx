@@ -50,7 +50,7 @@ export default function layout({ children }: { children: React.ReactNode }) {
     },
     {
       label: "Inspiration",
-      href: "#",
+      href: "/client/dashboard/inspiration",
       icon: (
         <IconBooks className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
