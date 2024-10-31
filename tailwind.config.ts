@@ -14,6 +14,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      gridTemplateColumns: {
+        "60/40": "60% 40%",
+      },
       animation: {
         spotlight: "spotlight 2s ease .75s 1 forwards",
         "shiny-text": "shiny-text 8s infinite",
