@@ -1,56 +1,54 @@
 "use client";
-import { useEffect, useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { getExercices } from "@/services/coachfit/getExercices";
 
-interface Exercise {
-  id: string; // Assurez-vous que le type correspond à celui renvoyé par l'API
-  name: string;
-  steps: string;
-  equipment: string;
-  muscle: string;
-}
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+// Importer la fonction
 
 export default function PageInspiration() {
-  const [exercises, setExercises] = useState<Exercise[]>([]);
-  const [error, setError] = useState<string | null>(null);
+  const [exercises, setExercises] = useState<any[]>([]); // Spécifier le type comme tableau
+  const [exercicesLoading, setExercicesLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    const fetchExercises = async () => {
+    (async () => {
       try {
-        const response = await fetch("/api/coachfit/getExercices"); // Chemin correct vers l'API
-        const data = await response.json();
-
-        if (response.ok) {
-          setExercises(data.data); // Assurez-vous que `data.data` est correct
-        } else {
-          setError(
-            data.error ||
-              "Erreur lors de la récupération des exercices aaaaaaaa"
-          );
-        }
+        setExercicesLoading(true);
+        const exercices = await getExercices(); // Appeler la fonction pour récupérer les exercices
+        setExercises(exercices);
       } catch (error) {
-        setError("Erreur lors de la récupération des exercices tytytyt.");
+        console.log(error);
+        toast.error("Erreur lors du chargement des exercices");
+      } finally {
+        setExercicesLoading(false); // Assurez-vous que le chargement se termine
       }
-    };
-
-    fetchExercises();
+    })();
   }, []);
 
-  if (error) return <p>{error}</p>;
-  if (exercises.length === 0) return <p>Chargement...</p>;
-
   return (
-    <div>
+    <div className="p-20">
       <h1>Liste des Exercices</h1>
-      <ul>
-        {exercises.map((exercise) => (
-          <li key={exercise.id}>
-            <h2>{exercise.name}</h2>
-            <p>Étapes : {exercise.steps}</p>
-            <p>Équipement : {exercise.equipment}</p>
-            <p>Muscle : {exercise.muscle}</p>
-          </li>
-        ))}
-      </ul>
+      {exercicesLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <ul className="grid grid-col-3 gap-8">
+          {exercises.map((exercise, idx) => (
+            <li key={idx}>
+              <h2>{exercise.name}</h2>
+              <p>Instructions : {exercise.instructions}</p>
+              <p>Équipement : {exercise.equipment}</p>
+              <p>Muscle : {exercise.bodyPart}</p>
+              <p>Difficulté : {exercise.difficulty}</p>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
