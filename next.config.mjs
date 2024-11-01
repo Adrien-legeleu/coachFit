@@ -6,6 +6,7 @@ const nextConfig = {
       "assets.aceternity.com",
       "avatars.githubusercontent.com",
       "avataaars.io",
+      "v2.exercisedb.io",
     ],
   },
 };
