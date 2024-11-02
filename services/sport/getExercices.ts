@@ -1,26 +1,52 @@
 import axios from "axios";
 
-export const getExercices = async () => {
-  const options = {
-    method: "GET",
-    url: "https://exercisedb.p.rapidapi.com/exercises",
-    params: {
-      limit: "10",
-      offset: "0",
-    },
-    headers: {
-      "x-rapidapi-key": "80d1fb50e1msh335d183925b62a2p13f3a9jsne494a5322031",
+export class ExerciseSportAPI {
+  private baseUrl: string;
+  private headers: Record<string, string>;
+
+  constructor() {
+    this.baseUrl = "https://exercisedb.p.rapidapi.com/exercises";
+    this.headers = {
+      "x-rapidapi-key": process.env.NEXT_PUBLIC_X_RAPIDAIPI_KEY as string,
       "x-rapidapi-host": "exercisedb.p.rapidapi.com",
-    },
-  };
-
-  try {
-    const response = await axios.request(options);
-    console.log(response);
-
-    return response.data; // Retourner les données de la réponse
-  } catch (error) {
-    console.error(error);
-    throw error; // Relancer l'erreur pour la gérer dans le composant
+    };
   }
-};
+
+  // Méthode pour obtenir tous les exercices
+  async getAllExercisesRandom(limit = 10, offset = 0) {
+    const options = {
+      method: "GET",
+      url: this.baseUrl,
+      params: { limit: String(limit), offset: String(offset) },
+      headers: this.headers,
+    };
+
+    try {
+      const response = await axios.request(options);
+      return response.data;
+    } catch (error) {
+      console.error("Erreur lors de la récupération des exercices:", error);
+      throw error;
+    }
+  }
+
+  // Méthode pour obtenir les exercices en fonction d'une partie du corps
+  async getExercisesByBodyPart(bodyPart: string) {
+    const options = {
+      method: "GET",
+      url: `${this.baseUrl}/bodyPart/${bodyPart}`,
+      headers: this.headers,
+    };
+
+    try {
+      const response = await axios.request(options);
+      return response.data;
+    } catch (error) {
+      console.error(
+        `Erreur lors de la récupération des exercices pour la partie du corps "${bodyPart}":`,
+        error
+      );
+      throw error;
+    }
+  }
+}
