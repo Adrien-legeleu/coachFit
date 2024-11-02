@@ -5,12 +5,13 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { useState } from "react";
 import { exerciceSportAPI } from "@/services/sport";
 import { inspirationSport } from "@/data/dataInspiration";
+import Image, { StaticImageData } from "next/image";
 
 interface SportData {
   id: number;
   value: string;
   title: string;
-  //   img: string;
+  img: StaticImageData;
 }
 
 export default function PageSport() {
@@ -48,14 +49,29 @@ export default function PageSport() {
   };
   return (
     <div className="p-20 w-full overflow-y-auto">
-      <h1>Type d'exercices</h1>
+      <h1 className="text-6xl text-center font-bold">Type d'exercices</h1>
       <div className="grid grid-cols-2 gap-10 mt-10">
-        {inspirationSport.map((data: SportData) => {
+        {inspirationSport.map((data: SportData, idx) => {
           return (
-            <Dialog>
-              <div className="bg-red-400 rounded-3xl shadow-xl flex justify-center items-center p-8 shadow-black/20">
+            <Dialog key={`modal exercices numéro ${data.id} `}>
+              <div className="rounded-3xl shadow-xl flex justify-center items-center mx-5 h-60  shadow-black/20">
                 <DialogTrigger asChild onClick={() => handleFetch(data.value)}>
-                  <h3 className="text-3xl text-neutral-50">{data.title}</h3>
+                  <div className="cursor-pointer h-full w-full relative">
+                    <h3 className="text-5xl [text-shadow:_0_8px_8px_rgb(0_0_0_/_0.5)]  absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-neutral-100">
+                      {data.title}
+                    </h3>
+                    <Image
+                      width={200}
+                      height={200}
+                      src={data.img}
+                      alt={`image de ${data.title}`}
+                      className={`w-full max-h-full ${
+                        data.value === "random"
+                          ? "object-contain  "
+                          : "object-cover  "
+                      } rounded-3xl`}
+                    />
+                  </div>
                 </DialogTrigger>
               </div>
               <DialogContent
