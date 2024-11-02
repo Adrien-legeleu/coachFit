@@ -54,9 +54,9 @@ export default function PageSport() {
         {inspirationSport.map((data: SportData, idx) => {
           return (
             <Dialog key={`modal exercices numéro ${data.id} `}>
-              <div className="rounded-3xl shadow-xl flex justify-center items-center mx-5 h-60  shadow-black/20">
+              <div className="rounded-3xl shadow-xl flex justify-center items-center mx-5 h-60   shadow-black/20">
                 <DialogTrigger asChild onClick={() => handleFetch(data.value)}>
-                  <div className="cursor-pointer h-full w-full relative">
+                  <div className="cursor-pointer h-full w-full relative bg-white rounded-3xl ">
                     <h3 className="text-5xl [text-shadow:_0_8px_8px_rgb(0_0_0_/_0.5)]  absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-neutral-100">
                       {data.title}
                     </h3>

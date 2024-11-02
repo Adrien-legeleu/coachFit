@@ -12,6 +12,7 @@ import { goals, specialties } from "@/data/dataUser";
 import { getUser, updateUser } from "@/lib/actionsUser";
 import Specialities from "./Specialities";
 import { toast } from "react-toastify";
+import Loading from "../../Others/Loading";
 
 export interface UserProps {
   user: User | null;
@@ -143,7 +144,9 @@ export default function SettingForm() {
   return (
     <>
       {isLoading ? (
-        <p>loading</p>
+        <div className="flex items-center h-screen w-full justify-center">
+          <Loading />
+        </div>
       ) : (
         <form
           className="flex w-2/3 flex-col mx-auto mt-20"

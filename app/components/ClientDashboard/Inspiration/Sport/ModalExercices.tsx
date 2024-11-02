@@ -61,18 +61,18 @@ export default function SportRandom({ exercises }: SportRandomProps) {
             </div>
           </div>
           <ul className="flex justify-between gap-4">
-            <li className="rounded-full bg-amber-500 border-[2px] border-amber-600 py-2 px-5">
+            <li className="rounded-full bg-amber-500 border-[2px] text-neutral-800 border-amber-600 py-2 px-5">
               {exercises[idxExercice]?.bodyPart ?? ""}
             </li>
             <div className="flex gap-2">
-              <li className="rounded-full bg-amber-300 border-[2px] border-amber-400 py-2 px-5">
+              <li className="rounded-full bg-amber-300 border-[2px] text-neutral-800 border-amber-400 py-2 px-5">
                 {exercises[idxExercice]?.target ?? ""}
               </li>
               {exercises[idxExercice]?.secondaryMuscles?.map(
                 (muscle: string, idx: number) => (
                   <li
                     key={`muscle-${idx}`}
-                    className="rounded-full bg-amber-200 border-[2px] border-amber-300 py-2 px-5"
+                    className="rounded-full bg-amber-200 border-[2px] text-neutral-800 border-amber-300 py-2 px-5"
                   >
                     {muscle}
                   </li>
@@ -88,7 +88,7 @@ export default function SportRandom({ exercises }: SportRandomProps) {
                 height={250}
                 src={exercises[idxExercice]?.gifUrl ?? ""}
                 alt="image exercice"
-                className="w-2/3 h-full object-contain"
+                className="w-2/3  rounded-3xl object-contain"
               />
             </div>
             <div className="space-y-2">

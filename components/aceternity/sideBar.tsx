@@ -13,6 +13,7 @@ import {
 import { useUserSettingContext } from "@/context/userSettingContext";
 import { useCoachSettingContext } from "@/context/coachSettingContext";
 import { Button } from "@/components/ui/button";
+import Loading from "@/app/components/Others/Loading";
 
 interface Links {
   label: string;
@@ -98,7 +99,7 @@ export const DesktopSidebar = ({
     <>
       <motion.div
         className={cn(
-          "h-full px-4 py-4 hidden rounded-r-3xl rounded-l-lg md:flex md:flex-col bg-neutral-100 dark:bg-neutral-900  brightness-[175%] border-r-[1px] border-neutral-200 dark:border-neutral-900 w-[300px] flex-shrink-0",
+          "h-full px-4 py-4 hidden rounded-r-3xl rounded-l-lg md:flex md:flex-col bg-white dark:bg-neutral-800  border-r-[1px] border-neutral-100 dark:border-neutral-800 w-[300px] flex-shrink-0",
           className
         )}
         animate={{
@@ -124,7 +125,7 @@ export const MobileSidebar = ({
     <>
       <div
         className={cn(
-          "h-10 px-4 py-4 flex flex-row md:hidden  items-center justify-between  bg-neutral-[175%] brightness-150  dark:bg-neutral-900 w-full"
+          "h-10 px-4 py-4 flex flex-row md:hidden  items-center justify-between  bg-neutral-[175%]   dark:bg-neutral-900 w-full"
         )}
         {...props}
       >
@@ -276,21 +277,7 @@ export const SideBarHandleForClient = () => {
         )
       ) : (
         <div className="flex items-center justify-start gap-2  group/sidebar py-2">
-          <IconAlertCircleFilled className="text-red-400 dark:text-red-600 h-5 w-5 flex-shrink-0" />
-          <motion.span
-            animate={{
-              display: animate
-                ? open
-                  ? "inline-block"
-                  : "none"
-                : "inline-block",
-              opacity: animate ? (open ? 1 : 0) : 1,
-            }}
-            className="text-xs text-center text-red-500 underline  group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block !p-0 !m-0"
-          >
-            Votre compte utilisateur n'a pas été trouvé, veuillez vous
-            déconnectez
-          </motion.span>
+          <Loading />
         </div>
       )}
     </div>

@@ -112,6 +112,7 @@ const config: Config = {
     require("tailwindcss-animate"),
     addVariablesForColors,
     require("@tailwindcss/line-clamp"),
+    require("daisyui"),
   ],
 };
 export default config;
